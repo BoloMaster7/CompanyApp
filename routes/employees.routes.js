@@ -34,10 +34,10 @@ router.get('/employees/:id', (req, res) => {
 router.post('/employees', (req, res) => {
   const { firstName, lastName } = req.body;
   req.db.collection('employees')
-  .insertOne({ firstName: firstName, lastName: lastName }, (err) => {
-    if (err) res.status(500).json({ message: err });
-    else res.json({ message: 'Success' });
-  });
+    .insertOne({ firstName: firstName, lastName: lastName }, (err) => {
+      if (err) res.status(500).json({ message: err });
+      else res.json({ message: 'Success' });
+    });
 });
 
 router.put('/employees/:id', (req, res) => {
@@ -53,13 +53,13 @@ router.put('/employees/:id', (req, res) => {
     );
 });
 
-  router.delete('/employees/:id', (req, res) => {
-    db = db.employees.filter((item) => item.id != req.params.id);
-    req.db.collection('employees')
-      .deleteOne({ _id: ObjectId(req.params.id) }, (err) => {
-        if (err) res.status(500).json({ message: err });
-        else res.json({ message: 'Success' });
-      });
+router.delete('/employees/:id', (req, res) => {
+  db = db.employees.filter((item) => item.id != req.params.id);
+  req.db.collection('employees')
+    .deleteOne({ _id: ObjectId(req.params.id) }, (err) => {
+      if (err) res.status(500).json({ message: err });
+      else res.json({ message: 'Success' });
+    });
 });
 
 module.exports = router;
