@@ -39,7 +39,6 @@ router.get('/departments/:id', async (req, res) => {
 });
 
 router.post('/departments', async (req, res) => {
-
   try {
 
     const { name } = req.body;
