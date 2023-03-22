@@ -25,7 +25,7 @@ describe('Employee', () => {
       const dep = new Employee({ name });
 
       dep.validate(err => {
-        expect(err.errors.name).to.exist;
+        expect(err.errors.firstName).to.exist;
       });
     }
     after(() => {
@@ -42,7 +42,7 @@ describe('Employee', () => {
       const dep = new Employee({ name });
 
       dep.validate(err => {
-        expect(err.errors.name).to.exist;
+        expect(err.errors.firstName).to.exist;
       });
     }
     after(() => {
@@ -50,19 +50,23 @@ describe('Employee', () => {
     });
   });
 
-  it('should not throw an error if "name" is okay', () => {
+  it('should not throw an error if "firstName", "lastName" and "department" is okay', () => {
 
-    const cases = ['Management', 'Human Resources'];
+    const cases = [
+      { firstName: 'John', lastName: 'Doe', department: 'Tech' },
+      { firstName: 'Amanda', lastName: 'Watson', department: 'Marketing' },
+    ];
     for (let name of cases) {
-      const dep = new Employee({ name });
+      const dep = new Employee( name );
 
       dep.validate(err => {
         expect(err).to.not.exist;
       });
-    }
+    
     after(() => {
       mongoose.models = {};
     });
+  }
   });
 
 });
