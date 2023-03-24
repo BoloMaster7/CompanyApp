@@ -69,79 +69,89 @@ describe('Employee', () => {
 
   });
 
-  // /////UPDATE
-  // describe('Updating data', () => {
+  /////UPDATE
+  describe('Updating data', () => {
 
-  //   beforeEach(async () => {
-  //     const testDepOne = new Employee({ name: 'Employee #1' });
-  //     await testDepOne.save();
+    beforeEach(async () => {
+      const testDepOne = new Employee(
+      {firstName: 'firstName #1'},
+      {lastName: 'lastName #1'},
+      {department: 'department #1'},);
+      await testDepOne.save();
 
-  //     const testDepTwo = new Employee({ name: 'Employee #2' });
-  //     await testDepTwo.save();
-  //   });
+      const testDepTwo = new Employee(
+      {firstName: 'firstName #2'},
+      {lastName: 'lastName #2'},
+      {department: 'department #2'});
+      await testDepTwo.save();
+    });
 
-  //   it('should properly update one document with "updateOne" method', async () => {
-  //     await Employee.updateOne({ name: 'Employee #1' }, { $set: { name: '=Employee #1=' } });
-  //     const updatedEmployee = await Employee.findOne({ name: '=Employee #1=' });
-  //     expect(updatedEmployee).to.not.be.null;
-  //   });
+    it('should properly update one document with "updateOne" method', async () => {
+      await Employee.updateOne
+      ({ firstName: 'Employee #1' }, 
+      { firstName: '=Employee #1='  });
+      const updatedEmployee = await Employee.findOne({ firstName: '=Employee #1=' });
+      expect(updatedEmployee).to.not.be.null;
+    });
 
-  //   it('should properly update one document with "save" method', async () => {
-  //     const Employee = await Employee.findOne({ name: 'Employee #1' });
-  //     Employee.name = '=Employee #1=';
-  //     await Employee.save();
+    it('should properly update one document with "save" method', async () => {
+      const Employee = await Employee.findOne({ firstName: 'Employee #1' });
+      Employee.firstName = '=Employee #1=';
+      await Employee.save();
 
-  //     const updatedEmployee = await Employee.findOne({ name: '=Employee #1=' });
-  //     expect(updatedEmployee).to.not.be.null;
-  //   });
+      const updatedEmployee = await Employee.findOne({ firstName: '=Employee #1=' });
+      expect(updatedEmployee).to.not.be.null;
+    });
 
-  //   it('should properly update multiple documents with "updateMany" method', async () => {
-  //     await Employee.updateMany({}, { $set: { name: 'Updated!' } });
-  //     const Employees = await Employee.find({ name: 'Updated!' });
-  //     expect(Employees.length).to.be.equal(2);
-  //   });
+    it('should properly update multiple documents with "updateMany" method', async () => {
+      await Employee.updateMany({}, { $set: { firstName: 'Updated!' } });
+      const Employees = await Employee.find();
+      expect(Employees[0].firstName).to.equal("Updated!");
+      expect(Employees[1].firstName).to.equal("Updated!");
+     
+    });
 
-  //   afterEach(async () => {
-  //     await Employee.deleteMany();
-  //   });
+    afterEach(async () => {
+      await Employee.deleteMany();
+    });
 
-  // });
+  });
 
-  // //////DELETE
-  // describe('Removing data', () => {
+  //////DELETE
+  describe('Removing data', () => {
 
-  //   beforeEach(async () => {
-  //     const testDepOne = new Employee({ name: 'Employee #1' });
-  //     await testDepOne.save();
+    beforeEach(async () => {
+      const testDepOne = new Employee({ firstName: 'Employee #1' });
+      await testDepOne.save();
 
-  //     const testDepTwo = new Employee({ name: 'Employee #2' });
-  //     await testDepTwo.save();
-  //   });
+      const testDepTwo = new Employee({ firstName: 'Employee #2' });
+      await testDepTwo.save();
+    });
 
-  //   afterEach(async () => {
-  //     await Employee.deleteMany();
-  //   });
+    afterEach(async () => {
+      await Employee.deleteMany();
+    });
 
-  //   it('should properly remove one document with "deleteOne" method', async () => {
-  //     await Employee.deleteOne({ name: 'Employee #1' });
-  //     const removeEmployee = await Employee.findOne({ name: 'Employee #1' });
-  //     expect(removeEmployee).to.be.null;
-  //   });
+    it('should properly remove one document with "deleteOne" method', async () => {
+      await Employee.deleteOne({ firstName: 'Employee #1' });
+      const removeEmployee = await Employee.findOne({ firstName: 'Employee #1' });
+      expect(removeEmployee).to.be.null;
+    });
 
-  //   it('should properly remove one document with "remove" method', async () => {
-  //     const Employee = await Employee.findOne({ name: 'Employee #1' });
-  //     await Employee.remove();
-  //     const removedEmployee = await Employee.findOne({ name: 'Employee #1' });
-  //     expect(removedEmployee).to.be.null;
-  //   });
+    it('should properly remove one document with "remove" method', async () => {
+      const Employee = await Employee.findOne({ firstName: 'Employee #1' });
+      await Employee.remove();
+      const removedEmployee = await Employee.findOne({ firstName: 'Employee #1' });
+      expect(removedEmployee).to.be.null;
+    });
 
-  //   it('should properly remove multiple documents with "deleteMany" method', async () => {
-  //     await Employee.deleteMany();
-  //     const Employees = await Employee.find();
-  //     expect(Employees.length).to.be.equal(0);
-  //   });
+    it('should properly remove multiple documents with "deleteMany" method', async () => {
+      await Employee.deleteMany();
+      const Employees = await Employee.find();
+      expect(Employees.length).to.be.equal(0);
+    });
 
-  // });
+  });
 
   after(() => {
     mongoose.models = {};
