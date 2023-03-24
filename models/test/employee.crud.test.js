@@ -34,11 +34,17 @@ describe('Employee', () => {
       await testEmpTwo.save();
     });
 
-    // it('should return proper document by various params with findOne method', async () => {
-    //   const Employee = await Employee.findOne({ name: 'Employee #1' });
-    //   const expectedName = 'Employee #1';
-    //   expect(Employee.name).to.be.equal('Employee #1');
-    // });
+    it('should return proper document by various params with findOne method', async () => {
+      const cases =[
+        {firstName: 'firstName #1'},
+        {lastName: 'lastName #1'},
+        {department: 'department #1'},
+      ];
+      for(let employee of cases){
+        const emp = await Employee.findOne(employee);
+        expect(emp).to.exist;
+    }
+    });
 
     after(async () => {
       await Employee.deleteMany();
@@ -46,19 +52,22 @@ describe('Employee', () => {
   });
 
   // //////CREATE
-  // describe('Creating data', () => {
+  describe('Creating data', () => {
 
-  //   it('should insert new document with "insertOne" method', async () => {
-  //     const Employee = new Employee({ name: 'Employee #1' });
-  //     await Employee.save();
-  //     expect(Employee.isNew).to.be.false;
-  //   });
+    it('should insert new document with "insertOne" method', async () => {
+      const employee = new Employee({
+      firstName: 'firstName #1',
+      lastName: 'lastName #1',
+      department: 'department #1', });
+      await employee.save();
+      expect(employee.isNew).to.be.false;
+    });
 
-  //   after(async () => {
-  //     await Employee.deleteMany();
-  //   })
+    after(async () => {
+      await Employee.deleteMany();
+    })
 
-  // });
+  });
 
   // /////UPDATE
   // describe('Updating data', () => {
