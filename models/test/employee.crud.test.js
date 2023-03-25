@@ -89,8 +89,16 @@ describe('Employee', () => {
     it('should properly update one document with "updateOne" method', async () => {
       await Employee.updateOne
       ({ firstName: 'Employee #1' }, 
-      { firstName: '=Employee #1='  });
-      const updatedEmployee = await Employee.findOne({ firstName: '=Employee #1=' });
+      { firstName: '=Employee #1='  },
+      {lastName: '=lastName #1='},
+      {lastName: 'lastName #1'},
+      {department: 'department #1'},
+      {department: '=department #1='});
+      const updatedEmployee = await Employee.findOne(
+        { firstName: '=Employee #1=' },
+        { lastName: '=lastName #1=' },
+        { department: '=department #1=' }
+        );
       expect(updatedEmployee).to.not.be.null;
     });
 
@@ -121,10 +129,16 @@ describe('Employee', () => {
   describe('Removing data', () => {
 
     beforeEach(async () => {
-      const testDepOne = new Employee({ firstName: 'Employee #1' });
+      const testDepOne = new Employee(
+      {firstName: 'firstName #1'},
+      {lastName: 'lastName #1'},
+      {department: 'department #1'});
       await testDepOne.save();
 
-      const testDepTwo = new Employee({ firstName: 'Employee #2' });
+      const testDepTwo = new Employee(
+      {firstName: 'firstName #2'},
+      {lastName: 'lastName #2'},
+      {department: 'department #2'});
       await testDepTwo.save();
     });
 
@@ -133,8 +147,14 @@ describe('Employee', () => {
     });
 
     it('should properly remove one document with "deleteOne" method', async () => {
-      await Employee.deleteOne({ firstName: 'Employee #1' });
-      const removeEmployee = await Employee.findOne({ firstName: 'Employee #1' });
+      await Employee.deleteOne( 
+      {firstName: 'firstName #1'},
+      {lastName: 'lastName #1'},
+      {department: 'department #1'} );
+      const removeEmployee = await Employee.findOne(
+      {firstName: 'firstName #2'},
+      {lastName: 'lastName #2'},
+      {department: 'department #2'});
       expect(removeEmployee).to.be.null;
     });
 
