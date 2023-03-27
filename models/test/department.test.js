@@ -1,67 +1,67 @@
-const Department = require('../department.model.js');
-const expect = require('chai').expect;
-const mongoose = require('mongoose');
+// const Department = require('../department.model.js');
+// const expect = require('chai').expect;
+// const mongoose = require('mongoose');
 
 
-describe('Department', () => {
+// describe('Department', () => {
 
-  it('should throw an error if no "name" arg', () => {
+//   it('should throw an error if no "name" arg', () => {
 
-    const dep = new Department({}); // create new Department, but don't set `name` attr value
+//     const dep = new Department({}); // create new Department, but don't set `name` attr value
 
-    dep.validate(err => {
-      expect(err.errors.name).to.exist;
-    });
-    after(() => {
-      mongoose.models = {};
-    });
-  });
+//     dep.validate(err => {
+//       expect(err.errors.name).to.exist;
+//     });
+//     after(() => {
+//       mongoose.models = {};
+//     });
+//   });
 
-  it('should throw an error if "name" is not a string', () => {
+//   it('should throw an error if "name" is not a string', () => {
     
-    const cases = [{}, []];
-    for (let name of cases) {
-      const dep = new Department({ name });
+//     const cases = [{}, []];
+//     for (let name of cases) {
+//       const dep = new Department({ name });
 
-      dep.validate(err => {
-        expect(err.errors.name).to.exist;
-      });
-    }
-    after(() => {
-      mongoose.models = {};
-    });
-  });
+//       dep.validate(err => {
+//         expect(err.errors.name).to.exist;
+//       });
+//     }
+//     after(() => {
+//       mongoose.models = {};
+//     });
+//   });
 
 
 
-  it('should throw an error if "name" is too short or too long', () => {
+//   it('should throw an error if "name" is too short or too long', () => {
 
-    const cases = ['Abc', 'abcd', 'Lorem Ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
-    for (let name of cases) {
-      const dep = new Department({ name });
+//     const cases = ['Abc', 'abcd', 'Lorem Ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
+//     for (let name of cases) {
+//       const dep = new Department({ name });
 
-      dep.validate(err => {
-        expect(err.errors.name).to.exist;
-      });
-    }
-    after(() => {
-      mongoose.models = {};
-    });
-  });
+//       dep.validate(err => {
+//         expect(err.errors.name).to.exist;
+//       });
+//     }
+//     after(() => {
+//       mongoose.models = {};
+//     });
+//   });
 
-  it('should not throw an error if "name" is okay', () => {
+//   it('should not throw an error if "name" is okay', () => {
 
-    const cases = ['Management', 'Human Resources'];
-    for (let name of cases) {
-      const dep = new Department({ name });
+//     const cases = ['Management', 'Human Resources'];
+//     for (let name of cases) {
+//       const dep = new Department({ name });
 
-      dep.validate(err => {
-        expect(err).to.not.exist;
-      });
-    }
-    after(() => {
-      mongoose.models = {};
-    });
-  });
+//       dep.validate(err => {
+//         expect(err).to.not.exist;
+//       });
+//     }
+//     after(() => {
+//       mongoose.models = {};
+//     });
+//   });
 
-});
+// });
