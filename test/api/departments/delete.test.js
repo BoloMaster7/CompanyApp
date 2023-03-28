@@ -32,7 +32,7 @@ describe('DELETE /api/departments', () => {
     expect(res.status).to.be.equal(200);
     expect(deletedDepartment).to.be.null;
   });
-  
+
 
 
   after(async () => await Department.deleteMany());

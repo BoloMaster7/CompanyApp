@@ -18,7 +18,7 @@
 //   });
 
 //   it('should throw an error if "name" is not a string', () => {
-    
+
 //     const cases = [{}, []];
 //     for (let name of cases) {
 //       const dep = new Department({ name });

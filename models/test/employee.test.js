@@ -57,16 +57,16 @@
 //       { firstName: 'Amanda', lastName: 'Watson', department: 'Marketing' },
 //     ];
 //     for (let name of cases) {
-//       const dep = new Employee( name );
+//       const dep = new Employee(name);
 
 //       dep.validate(err => {
 //         expect(err).to.not.exist;
 //       });
-    
-//     after(() => {
-//       mongoose.models = {};
-//     });
-//   }
+
+//       after(() => {
+//         mongoose.models = {};
+//       });
+//     }
 //   });
 
 // });
