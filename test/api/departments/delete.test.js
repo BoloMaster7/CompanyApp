@@ -30,18 +30,9 @@ describe('DELETE /api/departments', () => {
 
     const deletedDepartment = await Department.findOne({ _id: '5d9f1140f10a81216cfd4408' });
     expect(res.status).to.be.equal(200);
-    expect(deletedDepartment).to.not.be.null;
+    expect(deletedDepartment).to.be.null;
   });
   
- it('/ should delete all documents to and return success', async () => {
-    const res = await request(server).post('/api/departments').delete({ name: '#Department #1' });
-    const newDepartment = await Department.findOne({ name: '#Department #1' });
-    expect(res.status).to.be.equal(200);
-    expect(newDepartment).to.be.null;
-
-  });
-
-
 
 
   after(async () => await Department.deleteMany());

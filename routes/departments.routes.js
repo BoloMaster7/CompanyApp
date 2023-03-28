@@ -4,10 +4,10 @@ const DepartmentController = require('../controllers/departments.controller');
 
 router.get('/departments', DepartmentController.getAll);
 router.get('/departments/random', DepartmentController.getRandom);
-router.get('/departments/id', DepartmentController.getById);
+router.get('/departments/:id', DepartmentController.getById);
 router.post('/departments', DepartmentController.createDepartment);
-router.put('/departments/id', DepartmentController.updateDepartment);
-router.delete('/departments/id', DepartmentController.deleteDepartment);
+router.put('/departments/:id', DepartmentController.updateDepartment);
+router.delete('/departments/:id', DepartmentController.deleteDepartment);
 
 module.exports = router;
 
